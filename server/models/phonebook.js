@@ -1,25 +1,9 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const PhoneBook = sequelize.define('PhoneBook', {
-    name: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Name must be filled'
-        }
-      }
-    },
+    name: DataTypes.STRING,
     address: DataTypes.STRING,
-    phone: {
-      type: DataTypes.STRING,
-      allowNull: false,
-      validate: {
-        notEmpty: {
-          msg: 'Phone number must be filled'
-        }
-      }
-    },
+    phone: DataTypes.STRING,
     email: DataTypes.STRING,
     image: DataTypes.STRING
   }, {});
