@@ -78,19 +78,35 @@ class PhoneBookController {
         .catch(next)
     }
 
-    static upload(req,res,next) {
-        let image = `uploads/${req.file.filename}`
+    uploadImage(req,res,next) {
+        // let image = `uploads/${req.file.filename}`
 
-        PhoneBook.update({ 
-            image 
-        },{
-            where: {
-                id: req.params.id
+        // PhoneBook.update({ 
+        //     image 
+        // },{
+        //     where: {
+        //         id: req.params.id
+        //     }
+        // })
+        // .then(()=>res.status(200).json({message:'upload photo success'}))
+        // .catch(next)
+        upload(req, res, (err) => {
+            if (err) res.send(err)
+            else {
+                let image = `uploads/${req.file.filename}`
+                PhoneBook.update({ image }, {
+                    where: {
+                        id: req.params.id
+                    }
+                })
+                .then(() => {
+                    res.status(200).json({message:'upload photo success'})
+                })
+                .catch(next)
             }
         })
-        .then(()=>res.status(200).json({message:'upload photo success'}))
-        .catch(next)
     }
+    
 }
 
 module.exports = PhoneBookController
