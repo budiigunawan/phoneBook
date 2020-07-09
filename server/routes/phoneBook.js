@@ -6,5 +6,6 @@ route.post('/', Controller.createContact)
 route.get('/:id', Controller.getContact)
 route.put('/:id',Controller.updateContact)
 route.delete('/:id',Controller.destroyContact)
+route.post('/avatar/:id', Controller.uploadImage)
 
 module.exports = route

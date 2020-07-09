@@ -2,7 +2,7 @@ const {PhoneBook} = require('../models')
 const multer = require('multer')
 const path = require('path')
 const storage = multer.diskStorage({
-    destination: './public/uploads/',
+    destination: '../../client/public/',
     filename: function (req, file, cb) {
         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname))
     }
@@ -33,7 +33,7 @@ class PhoneBookController {
             address,
             phone,
             email,
-            image : './uploads/default.jpg'
+            image : '/default.png'
         })
         .then(contact=>{
             res.status(201).json({contact})
@@ -78,7 +78,7 @@ class PhoneBookController {
         .catch(next)
     }
 
-    uploadImage(req,res,next) {
+    static uploadImage(req,res,next) {
         // let image = `uploads/${req.file.filename}`
 
         // PhoneBook.update({ 
